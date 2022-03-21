@@ -26,3 +26,4 @@ export class Project {
     return this.id === undefined;
   }
 }
+
