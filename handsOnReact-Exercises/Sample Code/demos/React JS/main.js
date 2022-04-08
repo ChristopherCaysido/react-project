@@ -251,3 +251,38 @@ function ButtonComponent(){
 // }
 
 // ReactDOM.render(<Elements />,rootElement);
+
+
+// Using useState
+
+function TextComponent(){
+    return <div><h1> Hey This Should Work Right? </h1></div>
+}
+function BlankComponent(){
+    return <div></div>
+}
+
+function ShowComponent(){
+    const [showText,setShowText] = React.useState(false);
+    const [hideText,setHideText] = React.useState(true);
+    const showDisplay = () =>{
+        setShowText(true)
+        setHideText(false)
+    }
+    const hideDisplay = () =>{
+        setHideText(true)
+        setShowText(false)
+    }
+    return(
+        <div>
+            <button className='showTextBtn' onClick={hideText ? showDisplay : hideDisplay}>
+                Button
+            </button>
+            {showText ? <TextComponent /> : 
+             hideText ? <BlankComponent /> :
+             null}
+        </div>
+    )
+}
+
+ReactDOM.render(<ShowComponent/>,rootElement)
