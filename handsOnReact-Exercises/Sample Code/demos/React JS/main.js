@@ -255,34 +255,77 @@ function ButtonComponent(){
 
 // Using useState
 
-function TextComponent(){
-    return <div><h1> Hey This Should Work Right? </h1></div>
-}
-function BlankComponent(){
-    return <div></div>
+// function TextComponent(){
+//     return <div><h1> Hey This Should Work Right? </h1></div>
+// }
+// function BlankComponent(){
+//     return <div></div>
+// }
+
+// function ShowComponent(){
+//     const [showText,setShowText] = React.useState(false);
+//     const [hideText,setHideText] = React.useState(true);
+//     const showDisplay = () =>{
+//         setShowText(true)
+//         setHideText(false)
+//     }
+//     const hideDisplay = () =>{
+//         setHideText(true)
+//         setShowText(false)
+//     }
+//     return(
+//         <div>
+//             <button className='showTextBtn' onClick={hideText ? showDisplay : hideDisplay}>
+//                 Button
+//             </button>
+//             {showText ? <TextComponent /> : 
+//              hideText ? <BlankComponent /> :
+//              null}
+//         </div>
+//     )
+// }
+
+
+// ReactDOM.render(<ShowComponent/>,rootElement)
+
+
+
+// function Counter({initialCount}){
+//   const [count,setCount] = React.useState(initialCount);
+//   // Reset Button
+//   return(
+
+//     <div>
+//     Count:{count}
+//     <button onClick={()=>setCount(initialCount)}>Reset</button>
+//     <button onClick={()=>setCount((prevState)=>prevState - 1)}>Decrement</button>
+//     <button onClick={()=>setCount((prevState)=>prevState + 1)}>Increment</button>
+//     </div>
+//   )
+// }
+  
+//   ReactDOM.render(<Counter initialCount={0} />, document.getElementById('root'));
+
+function Clock() {
+  const [time, setTime] = React.useState(new Date().toLocaleTimeString());
+
+  React.useEffect(() => {
+    const timerID = setInterval(refresh, 1000);
+    return () => {
+      clearInterval(timerID);
+    };
+  }, []);
+
+  const refresh = () => {
+    setTime(new Date().toLocaleTimeString());
+  };
+
+  return (
+    <div>
+      <p>{time}</p>
+    </div>
+  );
 }
 
-function ShowComponent(){
-    const [showText,setShowText] = React.useState(false);
-    const [hideText,setHideText] = React.useState(true);
-    const showDisplay = () =>{
-        setShowText(true)
-        setHideText(false)
-    }
-    const hideDisplay = () =>{
-        setHideText(true)
-        setShowText(false)
-    }
-    return(
-        <div>
-            <button className='showTextBtn' onClick={hideText ? showDisplay : hideDisplay}>
-                Button
-            </button>
-            {showText ? <TextComponent /> : 
-             hideText ? <BlankComponent /> :
-             null}
-        </div>
-    )
-}
+ReactDOM.render(<Clock />, document.getElementById('root'));
 
-ReactDOM.render(<ShowComponent/>,rootElement)

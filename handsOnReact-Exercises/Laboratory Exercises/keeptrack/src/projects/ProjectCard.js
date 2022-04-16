@@ -8,14 +8,12 @@ function limitChar60(description){
 }
 
 // EventHandler
-function handleEditClick(project){
-  console.log(project);
-}
+
 // Create ProjectCard function
 function ProjectCard(props){
-    const {project} = props
+    const {project,onEdit} = props
     const handleEditClick = (projectEdited) =>{
-      console.log(projectEdited);
+      {onEdit(projectEdited)};
     }
   
     return (
@@ -40,6 +38,7 @@ function ProjectCard(props){
 
 ProjectCard.propTypes = {
     project: PropTypes.instanceOf(Project).isRequired,
+    onEdit: PropTypes.func.isRequired,
 }
 
 export default ProjectCard;
